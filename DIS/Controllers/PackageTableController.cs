@@ -134,7 +134,7 @@ namespace DIS.Controllers
             User user = _context.Users.First(u => u.Login == login);
 
             if (user.RoleId != 1)
-                ViewBag.Status = new Microsoft.AspNetCore.Mvc.Rendering.SelectList("Готовится к отправке");
+                ViewBag.Status = new Microsoft.AspNetCore.Mvc.Rendering.SelectList(new List<string>() { "Готовится к отправке" });
             else
                 ViewBag.Status = new Microsoft.AspNetCore.Mvc.Rendering.SelectList(STATUS_LIST);
             var selectedStatus = (ViewBag.Status as SelectList).First();
