@@ -1,0 +1,24 @@
+﻿@model DIS.Models.PostOffice
+
+@using (Html.BeginForm("EditPostOffice", "PostOfficeTable", FormMethod.Post))
+{
+    <fieldset>
+        @Html.HiddenFor(m => m.Id)
+        <p>
+            @Html.LabelFor(m => m.Region, "Регион")
+            <br />
+            @Html.EditorFor(m => m.Region)
+        </p>
+        <p>
+            @Html.LabelFor(m => m.City, "Город")
+            <br />
+            @Html.EditorFor(m => m.City)
+        </p>
+        <p>
+            @Html.LabelFor(m => m.Address, "Адрес")
+            <br />
+            @Html.EditorFor(m => m.Address)
+        </p>
+        <p><input type="submit" value="Сохранить" /></p>
+    </fieldset>
+}

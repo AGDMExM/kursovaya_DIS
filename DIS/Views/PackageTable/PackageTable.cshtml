@@ -1,0 +1,74 @@
+﻿<h3 align="center">Список посылок</h3>
+
+@if (ViewContext.HttpContext.User.IsInRole("admin"))
+{
+    <a href="/PackageTable/CreatePackage">Создать посылку</a>
+}else
+{
+    <a href="/PackageTable/CreatePackage">Оформить посылку</a>
+}
+
+
+<form method="get">
+    <div class="filter">
+        <label class="control-label">Тип: </label>
+        <select name="name" asp-items="ViewBag.NamesSelectList" class="form-control"></select>
+
+        <label class="control-label">Статус: </label>
+        <select name="status" asp-items="ViewBag.StatusSelectList" class="form-control"></select>
+
+        @if (ViewContext.HttpContext.User.IsInRole("admin"))
+        {
+            <label class="control-label">Отправитель: </label>
+            <select name="sender" asp-items="ViewBag.SendersSelectList" class="form-control"></select>
+        }
+
+        <label class="control-label">Получатель: </label>
+        <select name="recipient" asp-items="ViewBag.RecipientsSelectList" class="form-control"></select>
+
+        <label class="control-label">Офис отправления: </label>
+        <select name="senderPostOffice" asp-items="ViewBag.SenderPostOfficeSelectList" class="form-control"></select>
+
+        <label class="control-label">Офис прибытия: </label>
+        <select name="recieptPostOffice" asp-items="ViewBag.RecieptPostOfficeSelectList" class="form-control"></select>
+    </div>
+    <div id="sub">
+        <input type="submit" value="Фильтр" />
+    </div>
+
+</form>
+
+<br />
+
+<table align="center" class="table table-striped">
+    <tr>
+        <th>Название</th>
+        <th>Статус</th>
+        <th>Отправитель</th>
+        <th>Получатель</th>
+        <th>Отделение отправки</th>
+        <th>Отделение прибытия</th>
+        @if (ViewContext.HttpContext.User.IsInRole("admin"))
+        {
+            <th></th>
+            <th></th>
+        }
+        
+    </tr>
+    @foreach (Package package in @ViewBag.Packages)
+    {
+        <tr>
+            <td>@ViewBag.Names[ViewBag.Packages.IndexOf(@package) + 1]</td>
+            <td>@ViewBag.Status[ViewBag.Status.IndexOf(@package.Status)]</td>
+            <td>@ViewBag.UserNames[ViewBag.UsersId.IndexOf(@package.IdSender)]</td>
+            <td>@ViewBag.UserNames[ViewBag.UsersId.IndexOf(@package.IdRecipient)]</td>
+            <td>@ViewBag.OfficeNames[ViewBag.OfficesId.IndexOf(@package.IdSenderPostOffice)]</td>
+            <td>@ViewBag.OfficeNames[ViewBag.OfficesId.IndexOf(@package.IdRecipientPostOffice)]</td>
+            @if (ViewContext.HttpContext.User.IsInRole("admin"))
+            {
+                <td valign="middle"><a href="/PackageTable/EditPackage/@package.Id">Редактировать</a></td>
+                <td valign="middle"><a href="/PackageTable/DeletePackage/@package.Id">Удалить</a></td>
+            }
+        </tr>
+    }
+</table>

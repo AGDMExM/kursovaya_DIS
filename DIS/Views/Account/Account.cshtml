@@ -1,0 +1,43 @@
+﻿@using System.Security.Claims;
+@using DIS.Models
+@{
+    
+}
+
+<div class="text-center">
+    <h1 class="display-4">Личный кабинет</h1>
+    <table class="table table-striped">
+        <tr>
+            <th>Название</th>
+            <th>Значение</th>
+        </tr>
+        <tr>
+            <td>ФИО</td>
+            <td>@ViewBag.User.FIO</td>
+        </tr>
+        <tr>
+            <td>Серия паспорта</td>
+            <td>@ViewBag.User.PassportSeries</td>
+        </tr>
+        <tr>
+            <td>Номер паспорта</td>
+            <td>@ViewBag.User.PassportNumber</td>
+        </tr>
+        <tr>
+            <td>Логин</td>
+            <td>@ViewBag.User.Login</td>
+        </tr>
+        <tr>
+            <td>Роль</td>
+            <td>@ViewBag.NameRole</td>
+        </tr>
+    </table>
+    @if (ViewContext.HttpContext.User.IsInRole("admin"))
+    {
+        <a asp-action="PackageTable" asp-controller="PackageTable">Список посылок</a><br />
+        <a asp-action="UsersTable" asp-controller="UsersTable">Список пользователей</a><br />
+        <a asp-action="PostOfficeTable" asp-controller="PostOfficeTable">Список офисов</a><br />
+    }
+    <a href="/Account/EditUser/@ViewBag.User.Id">Редактировать профиль</a><br />
+    <a asp-action="Logout" asp-controller="Account">Выйти</a><br />
+</div>

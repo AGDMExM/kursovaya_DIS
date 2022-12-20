@@ -1,0 +1,40 @@
+﻿@model DIS.Models.Package
+
+@using (Html.BeginForm("EditPackage", "PackageTable", FormMethod.Post))
+{
+    <fieldset>
+        @Html.HiddenFor(m => m.Id)
+        <p>
+            @Html.LabelFor(m => m.Name, "Название")
+            <br />
+            @Html.EditorFor(m => m.Name)
+        </p>
+        <p>
+            @Html.LabelFor(model => model.Status, "Статус")
+            <br />
+            @Html.DropDownListFor(m => m.Status, ViewBag.Status as SelectList)
+        </p>
+        <p>
+            @Html.LabelFor(model => model.IdSender, "Отправитель")
+            <br />
+            @Html.DropDownListFor(m => m.IdSender, ViewBag.Senders as SelectList)
+        </p>
+        <p>
+            @Html.LabelFor(model => model.IdRecipient, "Получатель")
+            <br />
+            @Html.DropDownListFor(m => m.IdRecipient, ViewBag.Recipients as SelectList)
+        </p>
+        <p>
+            @Html.LabelFor(model => model.IdSenderPostOffice, "Пункт отправления")
+            <br />
+            @Html.DropDownListFor(m => m.IdSenderPostOffice, ViewBag.SenderPostOffice as SelectList)
+
+        </p>
+        <p>
+            @Html.LabelFor(model => model.IdRecipientPostOffice, "Пункт доставки")
+            <br />
+            @Html.DropDownListFor(m => m.IdRecipientPostOffice, ViewBag.RecieptPostOffice as SelectList)
+        </p>
+        <p><input type="submit" value="Сохранить" /></p>
+    </fieldset>
+}

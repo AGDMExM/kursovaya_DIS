@@ -1,0 +1,38 @@
+﻿@model DIS.Models.Package
+
+<h2>Создание заказа</h2>
+
+@using (Html.BeginForm())
+{
+    @Html.LabelFor(model => model.Name, "Название")
+    <br />
+    @Html.EditorFor(model => model.Name)
+    <br />
+
+    @Html.LabelFor(model => model.Status, "Статус")
+    <br />
+    @Html.DropDownListFor(m => m.Status, ViewBag.Status as SelectList)
+    <br />
+
+    @Html.LabelFor(model => model.IdSender, "Отправитель")
+    <br />
+    @Html.DropDownListFor(m => m.IdSender, ViewBag.Senders as SelectList)
+    <br />
+
+    @Html.LabelFor(model => model.IdRecipient, "Получатель")
+    <br />
+    @Html.DropDownListFor(m => m.IdRecipient, ViewBag.Recipients as SelectList)
+    <br />
+
+    @Html.LabelFor(model => model.IdSenderPostOffice, "Пункт отправления")
+    <br />
+    @Html.DropDownListFor(m => m.IdSenderPostOffice, ViewBag.SenderPostOffice as SelectList)
+    <br />
+
+    @Html.LabelFor(model => model.IdRecipientPostOffice, "Пункт доставки")
+    <br />
+    @Html.DropDownListFor(m => m.IdRecipientPostOffice, ViewBag.RecieptPostOffice as SelectList)
+    <br />
+
+    <input type="submit" value="Сохранить" />
+}

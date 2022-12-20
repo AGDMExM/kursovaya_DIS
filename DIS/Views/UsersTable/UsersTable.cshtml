@@ -1,0 +1,50 @@
+﻿<h3 align="center">Редактирование списка пользователей</h3> 
+
+<a href="/UsersTable/CreateUser">Создать пользователя</a>
+
+<form method="get" >
+    <div class="filter">
+        <label class="control-label">Привилегия: </label>
+        <select name="roleId" asp-items="ViewBag.Roles" class="form-control"></select>
+
+        <label for="FIO" >ФИО: </label>
+        <input id="FIO" name="fio" class="form-control" />
+
+        <label for="passportSeries">Серия паспорта: </label>
+        <input id="passportSeries" name="passportSeries" class="form-control" />
+
+        <label for="passportNumber">Номер паспорта: </label>
+        <input id="passportNumber" name="passportNumber" class="form-control" />
+
+    </div>
+    <div id="sub"> 
+        <input type="submit" value="Фильтр" />
+    </div>
+    
+</form>
+
+<br/>
+
+<table align="center" class="table table-striped">
+    <tr>
+        <th>Привилегии</th>
+        <th>ФИО</th>
+        <th>Серия, номер паспорта</th>
+        <th>Логин</th>
+        <th>Пароль</th>
+        <th></th>
+        <th></th>
+    </tr>
+    @foreach (User user in @ViewBag.Users)
+    {
+        <tr>
+            <td>@ViewBag.NameUsersRole[ViewBag.Users.IndexOf(@user)]</td>
+            <td>@user.FIO</td>
+            <td>@user.PassportSeries @user.PassportNumber</td>
+            <td>@user.Login</td>
+            <td>@user.Password</td>
+            <td valign ="middle"><a href="/UsersTable/EditUser/@user.Id">Редактировать</a></td>
+            <td valign="middle"><a href="/UsersTable/DeleteUser/@user.Id">Удалить</a></td>
+        </tr>
+    }
+</table>

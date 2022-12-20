@@ -1,0 +1,28 @@
+﻿@model DIS.Models.PostOffice
+
+<h2>Добавить новый офис</h2>
+
+@using (Html.BeginForm())
+{
+    @Html.HiddenFor(m => m.Id)
+
+    <br />
+    @Html.LabelFor(m => m.Region, "Регион")
+    <br />
+    @Html.EditorFor(m => m.Region)
+    <br />
+
+    <br />
+    @Html.LabelFor(m => m.City, "Город")
+    <br />
+    @Html.EditorFor(m => m.City)
+    <br />
+
+    <br />
+    @Html.LabelFor(m => m.Address, "Адрес")
+    <br />
+    @Html.EditorFor(m => m.Address)
+    <br />
+
+    <input type="submit" value="Сохранить" />
+}

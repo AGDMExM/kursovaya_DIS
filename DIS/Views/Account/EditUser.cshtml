@@ -1,0 +1,36 @@
+﻿@model DIS.Models.User
+
+@using (Html.BeginForm("EditUser", "Account", FormMethod.Post))
+{
+        <fieldset>
+        @Html.HiddenFor(m => m.Id)
+        @Html.HiddenFor(m => m.RoleId)
+            <p>
+            @Html.LabelFor(m => m.FIO, "ФИО")
+                <br />
+            @Html.EditorFor(m => m.FIO)
+            </p>
+            <p>
+            @Html.LabelFor(m => m.PassportSeries, "Серия паспорта")
+                <br />
+            @Html.EditorFor(m => m.PassportSeries)
+            </p>
+            <p>
+            @Html.LabelFor(m => m.PassportNumber, "Номер паспорта")
+            <br />
+            @Html.EditorFor(m => m.PassportNumber)
+            </p>
+            <p>
+            @Html.LabelFor(m => m.Login, "Логин")
+                <br />
+            @Html.EditorFor(m => m.Login)
+
+            </p>
+            <p>
+            @Html.LabelFor(m => m.Password, "Пароль")
+                <br />
+            @Html.EditorFor(m => m.Password)
+            </p>
+            <p><input type="submit" value="Сохранить" /></p>
+        </fieldset>
+}

@@ -1,0 +1,44 @@
+﻿@model DIS.Models.User
+
+<h2>Добавить нового пользователя</h2>
+
+@using (Html.BeginForm())
+{
+    @Html.LabelFor(model => model.RoleId, "Уровень привилегий")
+        <br />
+    @Html.DropDownListFor(m => m.RoleId, ViewBag.Roles as SelectList)
+        <br />
+
+    <br />
+    @Html.LabelFor(model => model.FIO, "ФИО")
+        <br />
+    @Html.EditorFor(model => model.FIO)
+        <br />
+
+    <br />
+    @Html.LabelFor(model => model.PassportSeries, "Серия паспорта")
+        <br />
+    @Html.EditorFor(model => model.PassportSeries)
+        <br />
+
+    <br />
+    @Html.LabelFor(model => model.PassportNumber, "Номер паспорта")
+        <br />
+    @Html.EditorFor(model => model.PassportNumber)
+        <br />
+
+    <br />
+    @Html.LabelFor(model => model.Login, "Логин")
+        <br />
+    @Html.EditorFor(model => model.Login)
+        <br />
+
+    <br />
+    @Html.LabelFor(model => model.Password, "Пароль")
+        <br />
+    @Html.EditorFor(model => model.Password)
+        <br />
+
+    <br />
+        <input type="submit" value="Сохранить" />
+}

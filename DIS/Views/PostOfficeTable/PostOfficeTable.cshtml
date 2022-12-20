@@ -1,0 +1,55 @@
+﻿<h3 align="center">Список офисов</h3>
+
+@if (ViewContext.HttpContext.User.IsInRole("admin"))
+{
+    <a href="/PostOfficeTable/CreatePostOffice">Добавить офис</a>
+}
+
+
+<form method="get">
+    <div class="filter">
+        <label for="address">Адрес: </label>
+        <input id="address" name="address" class="form-control" />
+
+        <label for="region">Регион: </label>
+        <select name="region" asp-items="ViewBag.Regions" class="form-control"></select>
+
+        <label for="City">Город: </label>
+        <select name="city" asp-items="ViewBag.Citys" class="form-control"></select>
+
+    </div>
+    <div id="sub">
+        <input type="submit" value="Фильтр" />
+    </div>
+
+</form>
+
+<br />
+
+<table align="center" class="table table-striped">
+    <tr>
+        <th>Номер</th>
+        <th>Регион</th>
+        <th>Город</th>
+        <th>Адрес</th>
+        @if (ViewContext.HttpContext.User.IsInRole("admin"))
+        {
+            <th></th>
+            <th></th>
+        }
+    </tr>
+    @foreach (PostOffice postOffice in @ViewBag.PostOffices)
+    {
+        <tr>
+            <td>@postOffice.Id</td>
+            <td>@postOffice.Region</td>
+            <td>@postOffice.City</td>
+            <td>@postOffice.Address</td>
+            @if (ViewContext.HttpContext.User.IsInRole("admin"))
+            {
+                <td valign="middle"><a href="/PostOfficeTable/EditPostOffice/@postOffice.Id">Редактировать</a></td>
+                <td valign="middle"><a href="/PostOfficeTable/DeletePostOffice/@postOffice.Id">Удалить</a></td>
+            }
+        </tr>
+    }
+</table>
