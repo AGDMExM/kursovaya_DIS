@@ -105,7 +105,17 @@ namespace DIS.Controllers
         [Authorize(Roles = "admin")]
         public ActionResult EditUser(User user)
         {
-            _context.Entry(user).State = EntityState.Modified;
+            var _user = _context.Users.FirstOrDefault(x => x.Id == user.Id);
+
+            if (_user != null)
+            {
+                _user.FIO = user.FIO;
+                _user.Login = user.Login;
+                _user.Password = user.Password;
+                _user.PassportSeries = user.PassportSeries;
+                _user.PassportNumber = user.PassportNumber;
+                _user.RoleId = user.RoleId;
+            }
             _context.SaveChanges();
             return RedirectToAction("UsersTable");
         }
